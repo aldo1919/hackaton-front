@@ -4,9 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- CSS bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- CSS vanila -->
+    <link rel="stylesheet" href="./css/nav.css">
+    <title>BBVA</title>
 </head>
 <body>
-    
+    <div id="root">
+         <nav class="container-fluid navbar navbar-expand-lg home-nav-fluid">
+            <div class="container home-nav-container">
+                <a class="navbar-brand" href="#">
+                    <img class="home-nav-img" src="./images/logo_bbva_blanco.svg">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse home-nav-sections" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 home-nav-list">
+                        <li class="nav-item home-nav-item active">
+                            <a class="nav-link home-nav-link active" aria-current="page" href="#">PERSONAS</a>
+                        </li>
+                        <li class="nav-item home-nav-item">
+                            <a class="nav-link home-nav-link" href="#">EMPRESAS</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 home-nav-list">
+                        <li class="nav-item home-nav-card-item">
+                            <a class="nav-link home-nav-card" href="#">
+                                <svg class="home-nav-icon home-nav-card-icon" xmlns="http://www.w3.org/2000/svg" id="b3c87a6d-227a-4cac-b89f-b132176f6014" data-name="Blue" viewBox="0 0 260 260">
+                                    <g id="ecc63e73-bfe2-4ff2-90ed-6d17caa880ef" data-name="Card">
+                                        <path id="edea3f2a-1e86-4f8b-8f9c-fc6bc7acd140" data-name="Icon" class="a3ab023b-8dfa-40ed-8237-c194aa9925a4" d="M10,107.5H184.55L206.36,85H10V51.26A11,11,0,0,1,20.94,40H239.06A11.08,11.08,0,0,1,250,51.26V208.74A11,11,0,0,1,239.06,220H20.94A11.08,11.08,0,0,1,10,208.74Zm141.82,56.25v22.5h43.63l21.82-22.5Z"/>
+                                    </g>
+                                </svg>
+                                <span>Obten tu Tarjeta de Credito</span>
+                            </a>
+                        </li>
+                        <span class="break--height-line"></span>
+                        <li class="nav-item home-nav-card-item">
+                            <a class="nav-link home-nav-card active" href="#">
+                                <img class="home-nav-icon" src="./images/savings.svg">
+                                <span>Abre tu cuenta</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="home-button-container">
+                        <button class="btn btn-lg home-button">
+                            Banca por Internet
+                        </button>
+                    </div>
+                    <div class="home-search-container">
+                        <svg class="home-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" height="20px" width="20px">
+                            <path class="bbvaicn" d="M182.85 162.85a90 90 0 1 0-20 20L220 240l20-20zM150 110a40 40 0 0 0-40-40V50a60 60 0 0 1 60 60z"></path>
+                        </svg>
+                    </div>
+                    <div class="home-nav-menu">
+                        <span>Menu</span>
+                        <svg class="home-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" height="24px" width="24px">
+                            <g>
+                                <polygon class="bbvaicn" points="210.37 80.12 20.37 80.12 20.37 50.12 240.37 50.12 210.37 80.12"></polygon>
+                                <polygon class="bbvaicn" points="180.37 145.12 20.37 145.12 20.37 115.12 210.37 115.12 180.37 145.12"></polygon>
+                                <polygon class="bbvaicn" points="150.37 210.12 20.37 210.12 20.37 180.12 180.37 180.12 150.37 210.12"></polygon>
+                            </g>
+                        </svg>
+                    </div>
+                    <!--  
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
