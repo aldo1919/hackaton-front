@@ -9,6 +9,7 @@
 </head>
 <body>
     <div>
+        <input type="text" id="search-map" style="width: 400px;margin-bottom:10px">
         <div style="position: relative;">
             <div id="loader-custom" class="loader-custom d-none">
                 <div class="spinner-border" role="status" >
@@ -16,12 +17,17 @@
             </div>
             <div id="map" style="width: 500px; height: 500px;"></div>
         </div>
-        <input type="text" id="search-map" style="width: 400px;margin-bottom:10px">
         <!-- <button id="searchCurrentLocation" class="button-primary">Mi ubicación</button> -->
     </div>
     <script>
         let  map;
         let marker;
+        let infoWindow;
+        const markers = [
+            {lat:-12.0925634,lng: -77.0203588,quantity:10,color:'yellow'},
+            {lat:-12.0972407 ,lng: -77.0224126,quantity:40,color:'red'},
+            {lat:-12.092057 ,lng: -77.018868,quantity:60,color:'green'},
+        ];
         function iniciarMap(){
                 var coord = {lat:-12.0529046 ,lng: -77.0253457};
                 map = new google.maps.Map(document.getElementById('map'),{
@@ -31,8 +37,8 @@
                 marker = new google.maps.Marker({
                     position: coord,
                     map: map,
-                    icon: 'https://www.bbva.pe/content/dam/public-web/global/images/favicon/v1/favicon-48x48.png',
                 });
+                // icon: './img/bbva.png',
                 const searchMap = document.getElementById('search-map');
                 const autocomplete = new google.maps.places.Autocomplete(searchMap);
                 // autocomplete.bindTo('bounds',map);
@@ -84,28 +90,54 @@
                     var currentLongitude = position.coords.longitude;
                     var currentLocation = { lat: currentLatitude, lng: currentLongitude };
                     // marker.setPosition(currentLocation);
-                    marker = new google.maps.Marker({
-                        position: currentLocation,
-                        icon: 'https://www.bbva.pe/content/dam/public-web/global/images/favicon/v1/favicon-48x48.png',
-                        map: map,
+                    // marker = new google.maps.Marker({
+                    //     position: currentLocation,
+                    //     map: map,
+                    // });
+                    markers.forEach(marker => {
+                        let location_marker = {
+                            lat:marker.lat,
+                            lng:marker.lng
+                        };
+                        const marker_google =new google.maps.Marker({
+                            position: location_marker,
+                            icon:`./img/marker-${marker.color}.svg`,
+                            map: map,
+                        })
+                        
+                        let fn = infoFn(location_marker,marker);
+                        google.maps.event.addListener(marker_google, 'click', fn);
                     });
+                    // scaledSize: new google.maps.Size(50, 50),
+                    // icon:'./img/location.png',
+                    // icon: './img/bbva.png',
 
                     map.setCenter(currentLocation);
                     map.setZoom(16);
-                    addInfoMap(currentLocation);
+                    // addInfoMap(currentLocation);
                 });
                 loader.classList.add("d-none");
             }
         }
-        // })
-        async function addInfoMap(currentLocation){
-            //Setear información en el mapa
-            const {address} =await searchPostalCode(currentLocation);
-            var infoWindowHTML = `Dirección: ${address}`;
-            var infoWindow = new google.maps.InfoWindow({map: map, content: infoWindowHTML});
-            infoWindow.setPosition(currentLocation);
-            //Setear información en los inputs
-        }
+        let infoFn = function (currentLocation,marker) {
+            return async function (e) {
+                if(infoWindow){
+                    infoWindow.close();
+                }
+                const {address} =await searchPostalCode(currentLocation);
+                var content = `<div>Dirección: ${address}</div><br><div>Afluencia: ${marker.quantity} personas</div>`;
+                infoWindow = new google.maps.InfoWindow({map: map, content: content});
+                infoWindow.setPosition(currentLocation);
+            }
+        };
+        // async function addInfoMap(currentLocation){
+        //     //Setear información en el mapa
+        //     const {address} =await searchPostalCode(currentLocation);
+        //     var infoWindowHTML = `Dirección: ${address}`;
+        //     var infoWindow = new google.maps.InfoWindow({map: map, content: infoWindowHTML});
+        //     infoWindow.setPosition(currentLocation);
+        //     //Setear información en los inputs
+        // }
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLM2ylauTXO0yLFGOYGRwRUIYNucn4EWc&callback=iniciarMap&libraries=places"></script>
@@ -119,6 +151,19 @@
             align-items: center;
             position:absolute;
             z-index: 10;
+        }
+        .marker{
+            width: 20px !important; 
+            height: 20px !important;
+        }
+        .marker-green{
+            fill:green ;
+        }
+        .marker-red{
+            fill:red ;
+        }
+        .marker-yellow{
+            fill:yellow ;
         }
     </style>
 </body>
