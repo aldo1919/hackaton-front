@@ -17,7 +17,7 @@
 }
 
 .home-nav-fluid {
-    position: fixed;
+    position: sticky;
     top: 0;
 
     padding: 0;
@@ -143,3 +143,21 @@
     margin: auto;
 }
 
+.home-nav-respon {
+    display: none;
+    margin-left: auto;
+}
+
+.home-nav-toggle-icon {
+    color: #FFF !important;
+}
+
+@media (max-width: 768px) {
+    .home-nav-container {
+        padding-inline: 1rem;
+    }
+    .home-nav-respon {
+        display: block;
+        color: #FFF;
+    }
+}
