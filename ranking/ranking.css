@@ -21,11 +21,12 @@ body {
 Leaderboard
 --------------------*/
 .leaderboard {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
-  left: 88%;
-  transform: translate(-50%, -50%);
-  width: 285px;
+  left: 88%; */
+  /* transform: translate(-50%, -50%); */
+  width: auto;
+  margin:  0rem 6rem;
   /* height: 308px; */
   background: linear-gradient(to bottom, #028484, #028484);
   border-radius: 10px;
@@ -65,7 +66,8 @@ Leaderboard
   border-radius: 20px;
   text-align: center;
 }
-.leaderboard ol li mark::before, .leaderboard ol li mark::after {
+.leaderboard ol li a::before, 
+.leaderboard ol li a::after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -76,7 +78,7 @@ Leaderboard
   transition: all 0.1s ease-in-out;
   opacity: 0;
 }
-.leaderboard ol li mark::after {
+.leaderboard ol li a::after {
   left: auto;
   right: -9px;
   border-left: none;
@@ -114,7 +116,7 @@ Leaderboard
   background: #ffce44;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
-.leaderboard ol li:nth-child(2) mark::before, .leaderboard ol li:nth-child(2) mark::after {
+.leaderboard ol li:nth-child(2) a::before, .leaderboard ol li:nth-child(2) a::after {
   border-top: 6px solid #ba4741;
   bottom: -7px;
 }
@@ -125,19 +127,20 @@ Leaderboard
   background: #f44a4f;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
-.leaderboard ol li:nth-child(3) mark::before, .leaderboard ol li:nth-child(3) mark::after {
+.leaderboard ol li:nth-child(3) a::before, .leaderboard ol li:nth-child(3) a::after {
   border-top: 2px solid #f44a4f;
   bottom: -3px;
 }
 .leaderboard ol li:hover {
-  z-index: 2;
   overflow: visible;
 }
 .leaderboard ol li:hover::after {
+  z-index: -1;
   opacity: 1;
   transform: scaleX(1.06) scaleY(1.03);
 }
-.leaderboard ol li:hover mark::before, .leaderboard ol li:hover mark::after {
+.leaderboard ol li:hover a::before, 
+.leaderboard ol li:hover a::after {
   opacity: 1;
   transition: all 0.35s ease-in-out;
 }

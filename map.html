@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBVA</title>
     <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/info.css">
+    <link rel="stylesheet" href="./ranking/ranking.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
@@ -72,7 +75,61 @@
            </div>
        </nav>
    </div>
-    <div class="section">
+   <div class="container">
+    <div class="info-servicio">
+        <h1 class="info-servicio-main-title">¿Vas a realizar una de estas opciones?</h1>
+        <div class="info-servicio-container">
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/TC.webp">
+                </div>
+                <h2 class="info-servicio-title">Obten una Tarjeta de Credito</h2>
+            </div>
+
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/Prestamo.webp">
+                </div>
+                <h2 class="info-servicio-title">Necesito un préstamo</h2>
+            </div>
+
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/Abre-Cuenta.webp">
+                </div>
+                <h2 class="info-servicio-title">Necesito una Cuenta de Ahorros</h2>
+            </div>
+
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/T-Cambio.png">
+                </div>
+                <h2 class="info-servicio-title">Quiero cambiar dólares</h2>
+            </div class="info-servicio-subcontainer">
+
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/Seguro_vehicular.webp">
+                </div>
+                <h2 class="info-servicio-title">Ncesito seguro vehícular</h2>
+            </div>
+
+            <div class="info-servicio-subcontainer">
+                <div>
+                    <img src="./images/Adelanto_sueldo.webp">
+                </div>
+                <h2 class="info-servicio-title">Busco un adelanto de sueldo</h2>
+            </div>
+        </div>
+        <div class="info-servicio-link-container">
+            <p>¡No mal gastes tu tiempo! Realiza tu acción de forma virtual</p>
+            <a class="info-servicio-link" href="#">
+                Banca Virtual
+            </a>
+        </div>
+    </div>
+</div>
+    <div class="section row pt-5 px-5">
         <div class="col-md-6">
             <div class="my-6">
                 <input type="text" id="search-map" style="width: 400px;margin-bottom:10px">
@@ -95,8 +152,25 @@
                     </div>
                 </div>
             </div>
+        </div> 
+        <div class="col-md-6">
+                <div class="leaderboard mt-5" >
+                    <h1>Aforo</h1>
+                    <ol>
+                    <li>
+                        <a>Sede 1</a>
+                    </li>
+                    <li>
+                        <a>Sede 2</a>
+                    </li>
+                    <li>
+                        <a>Sede 3</a>
+                    </li>
+                    </ol>
+                </div>
         </div>
     </div>
+   
     <script>
         let  map;
         let marker;
