@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <div style="position: relative;">
+            <div id="loader-custom" class="loader-custom d-none">
+                <div class="spinner-border" role="status" >
+                </div>
+            </div>
+            <div id="map" style="width: 500px; height: 500px;"></div>
+        </div>
+        <input type="text" id="search-map" style="width: 400px;margin-bottom:10px">
+        <!-- <button id="searchCurrentLocation" class="button-primary">Mi ubicación</button> -->
+    </div>
+    <script>
+        let  map;
+        let marker;
+        function iniciarMap(){
+                var coord = {lat:-12.0529046 ,lng: -77.0253457};
+                map = new google.maps.Map(document.getElementById('map'),{
+                    zoom: 10,
+                    center: coord
+                });
+                marker = new google.maps.Marker({
+                    position: coord,
+                    map: map,
+                    icon: 'https://www.bbva.pe/content/dam/public-web/global/images/favicon/v1/favicon-48x48.png',
+                });
+                const searchMap = document.getElementById('search-map');
+                const autocomplete = new google.maps.places.Autocomplete(searchMap);
+                // autocomplete.bindTo('bounds',map);
+                autocomplete.addListener("place_changed",()=>{
+                    const place = autocomplete.getPlace();
+                    const {geometry:{viewport,location}} = place;
+                    map.setCenter(location);
+                    map.setZoom(16);
+                    addInfoMap(location);
+                })
+                //Buscar código postal
+        }
+        var code_postal;
+        async function searchPostalCode(coord){
+            geocoder = new google.maps.Geocoder();
+            
+            let data ={
+                // country:'País no encontrada',
+                // city:'Ciudad no encontrada',
+                address:'Dirección no encontrada.',
+                // postal_code:'Código Postal no encontrada'
+            }
+            const {results} =await geocoder.geocode({'latLng': coord}, ()=>{});
+            if (results[0]) {
+                data.address =results[0].formatted_address;
+                // for (j = 0; j < results[0].address_components.length; j++) {
+                //     if (results[0].address_components[j].types[0] == 'postal_code'){
+                //         data.postal_code = results[0].address_components[j].short_name;
+                //     }
+                //     if (results[0].address_components[j].types[0] == "country") {
+                //         data.country = results[0].address_components[j].long_name;
+                //     }
+                //     if (results[0].address_components[j].types[0] == "locality") {
+                //         data.city = results[0].address_components[j].long_name;
+                //     }
+                // }
+            }
+            return data;
+        }
+        setCurrentPositionMap();
+        function setCurrentPositionMap(){
+            // e.preventDefault();
+            // searchCurrentLocation.disabled = true;
+            let loader = document.getElementById("loader-custom");
+                loader.classList.remove("d-none");
+                if ("geolocation" in navigator){
+                navigator.geolocation.getCurrentPosition(function(position){ 
+                    var currentLatitude = position.coords.latitude;
+                    var currentLongitude = position.coords.longitude;
+                    var currentLocation = { lat: currentLatitude, lng: currentLongitude };
+                    // marker.setPosition(currentLocation);
+                    marker = new google.maps.Marker({
+                        position: currentLocation,
+                        icon: 'https://www.bbva.pe/content/dam/public-web/global/images/favicon/v1/favicon-48x48.png',
+                        map: map,
+                    });
+
+                    map.setCenter(currentLocation);
+                    map.setZoom(16);
+                    addInfoMap(currentLocation);
+                });
+                loader.classList.add("d-none");
+            }
+        }
+        // })
+        async function addInfoMap(currentLocation){
+            //Setear información en el mapa
+            const {address} =await searchPostalCode(currentLocation);
+            var infoWindowHTML = `Dirección: ${address}`;
+            var infoWindow = new google.maps.InfoWindow({map: map, content: infoWindowHTML});
+            infoWindow.setPosition(currentLocation);
+            //Setear información en los inputs
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLM2ylauTXO0yLFGOYGRwRUIYNucn4EWc&callback=iniciarMap&libraries=places"></script>
+    <style>
+        .loader-custom{
+            background: rgba(255, 255, 255, .6);
+            height: 500px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:absolute;
+            z-index: 10;
+        }
+    </style>
+</body>
+</html>
