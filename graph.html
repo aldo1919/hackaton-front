@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+      integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="myChart" style="position: relative; height: 400px; width: 400px">
+    </canvas>
+    <script>
+      const mockData = {
+        day: 'Lunes',
+        records: [
+          {
+            hora: '9:00',
+            aforo: 1,
+          },
+          {
+            hora: '9:10',
+            aforo: 7,
+          },
+          {
+            hora: '9:20',
+            aforo: 11,
+          },
+          {
+            hora: '9:30',
+            aforo: 19,
+          },
+          {
+            hora: '9:40',
+            aforo: 13,
+          },
+          {
+            hora: '9:50',
+            aforo: 11,
+          },
+          {
+            hora: '10:00',
+            aforo: 10,
+          },
+        ],
+      };
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          datasets: [
+            {
+              data: mockData.records,
+              backgroundColor: ['rgba(0, 68, 129,1)'],
+              borderColor: ['rgba(25, 115, 184,1)'],
+              borderWidth: 1,
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          parsing: {
+            xAxisKey: 'hora',
+            yAxisKey: 'aforo',
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            title: {
+              display: true,
+              text: `Aforo Diario ${mockData.day}`,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
