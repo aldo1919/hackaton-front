@@ -198,7 +198,7 @@
                     infoWindow.close();
                 }
                 const {address} =await searchPostalCode(currentLocation);
-                var content = `<div>Dirección: ${address}</div><br><div>Afluencia: ${marker.quantity} personas</div>`;
+                var content = `<div>Dirección: ${address}</div><img width="50px" height="50px" src="https://elcomercio.pe/resizer/Nsy5UpR-2y5zUZTnh2a6pu4IhD8=/1200x675/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/ZLZNRSMLOVF3VDGDBHX5LPD7IE.jpg"><div>Afluencia: ${marker.quantity} personas</div>`;
                 infoWindow = new google.maps.InfoWindow({map: map, content: content});
                 infoWindow.setPosition(currentLocation);
             }
