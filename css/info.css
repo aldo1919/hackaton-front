@@ -84,3 +84,46 @@
     color: #FFF;
     background-color: #03b7b7;
 }
+
+.buscador{
+    border-radius: 4px;
+    height: 70px;
+    left: 20%;
+    position: absolute;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+.oficinas{
+  
+    border-radius: 4px;
+    left: 20%;
+    position: absolute;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.form-control-feedback {
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 10px;
+    pointer-events: none;
+  }
+
+#search-map {
+    padding-left: 30px!important;
+  }
+
+.titulo-oficina{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.oficina{
+    box-shadow: 5px 10px #00000040;
+    background-color: white;
+}
